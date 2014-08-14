@@ -6,7 +6,11 @@
 set -o vi
 
 # A "short" but informative prompt.
-PS1='\n$USER@$HOST:$PWD\n'"$PS1S"
+if [[ "$(uname)" = "OpenBSD" ]]; then
+    PS1='\n$USER@$HOST:$PWD\n'"$PS1S"
+else
+    PS1='$USER@$HOST:$PWD'"$PS1S"
+fi
 
 #--------------------------------------
 # Aliases
