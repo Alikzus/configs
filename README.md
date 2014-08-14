@@ -1,4 +1,4 @@
 configs
 =======
 
-Configuration files for miscellaneous programs, e.g. ksh, vim and tmux.
+My configuration files for miscellaneous programs, e.g. ksh, vim and tmux.
