@@ -1,0 +1,3 @@
+# ~/.ssh/config -- OpenBSD SSH client config.
+
+ForwardAgent yes
