@@ -1,6 +1,11 @@
-# .kshrc -- OpenBSD Korn shell configuration for interactive mode
+# ~/.kshrc -- OpenBSD Korn shell configuration for interactive shells
 
 . /etc/ksh.kshrc
+
+if [[ "$HOST" = "tor" ]]; then
+    # TODO: Create/Reattach the default tmux session.
+    echo "Hammer!"
+fi
 
 # Turn on vi mode, it is awesome.
 set -o vi
@@ -11,6 +16,10 @@ if [[ "$(uname)" = "OpenBSD" ]]; then
 else
     PS1='$USER@$HOST:$PWD'"$PS1S"
 fi
+
+#tmux att || tmux new -s default
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
 
 #--------------------------------------
 # Aliases
