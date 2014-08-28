@@ -1,4 +1,6 @@
 # ~/.kshrc -- OpenBSD Korn shell configuration for interactive shells
+# joel@alikzus.se, 2014-08-28.
+# http://www.alikzus.se
 
 . /etc/ksh.kshrc
 
