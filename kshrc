@@ -2,22 +2,16 @@
 
 . /etc/ksh.kshrc
 
-if [[ "$HOST" = "tor" ]]; then
-    # TODO: Create/Reattach the default tmux session.
-    echo "Hammer!"
-fi
-
 # Turn on vi mode, it is awesome.
 set -o vi
 
 # A "short" but informative prompt.
+# Line breaks seems to only work with OpenBSD pdksh.
 if [[ "$(uname)" = "OpenBSD" ]]; then
     PS1='\n$USER@$HOST:$PWD\n'"$PS1S"
 else
     PS1='$USER@$HOST:$PWD'"$PS1S"
 fi
-
-#tmux att || tmux new -s default
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
@@ -25,8 +19,8 @@ fi
 # Aliases
 #--------------------------------------
 
-# Use vim instead of vi.
-alias vi="vim"
+# Sudo and edit.
+alias sv="sudo $EDITOR"
 
 # Make a directory, with the parent flag -- DOS style.
 alias md="mkdir -p"
