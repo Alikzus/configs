@@ -1,14 +1,23 @@
-" ~/.vimrc -- VIM configuration file.
-" joel@alikzus.se, 2014-08-23.
-" http://www.alikzus.se
+"" ~/.vimrc -- VIM configuration file
+"" joel@alikzus.se, 2014-10-28
+"" http://www.alikzus.se
+
+"" User for OS specific settings.
+let os=substitute(system('uname'), '\n', '', '')
 
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
-set encoding=utf-8
 set fileformat=unix
 set fileformats=unix,dos
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
+
+"" Encoding
+if os == 'OpenBSD'
+    set encoding=iso8859-1
+else
+    set encoding=uft-8
+endif
 
 "" Show line numbers.
 set number
