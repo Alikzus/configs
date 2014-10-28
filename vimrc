@@ -16,7 +16,7 @@ filetype plugin indent on       " load file type plugins + indentation
 if os == 'OpenBSD'
     set encoding=iso8859-1
 else
-    set encoding=uft-8
+    set encoding=utf-8
 endif
 
 "" Show line numbers.
