@@ -10,8 +10,6 @@ export EDITOR=vim
 
 export PAGER=less
 
-export PKG_PATH=http://ftp.eu.openbsd.org/pub/OpenBSD/5.5/packages/amd64
-
 # Use latin1 while on an OpenBSD system.
 # Use UTF8 in the other cases.
 if [[ "$(uname)" = "OpenBSD" ]]; then
