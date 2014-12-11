@@ -17,9 +17,9 @@ fi
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-if [ -z ${TMUX} ]; then
-  /usr/bin/tmux attach || /usr/bin/tmux
-fi
+#if [ -z ${TMUX} ]; then
+#  /usr/bin/tmux attach || /usr/bin/tmux
+#fi
 
 #--------------------------------------
 # Aliases
