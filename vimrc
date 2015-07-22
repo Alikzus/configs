@@ -1,5 +1,5 @@
 "" ~/.vimrc -- VIM configuration file
-"" joel@alikzus.se, 2014-10-28
+"" joel at alikzus.se, 2015-07-22
 "" http://www.alikzus.se
 
 "" User for OS specific settings.
@@ -13,11 +13,8 @@ set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 
 "" Encoding
-if os == 'OpenBSD'
-    set encoding=iso8859-1
-else
-    set encoding=utf-8
-endif
+set encoding=utf-8
+set fileencoding=utf-8
 
 "" Show line numbers.
 set number

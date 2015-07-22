@@ -1,5 +1,5 @@
 # ~/.kshrc -- OpenBSD Korn shell configuration for interactive shells
-# joel@alikzus.se, 2014-08-28.
+# joel at alikzus.se, 2015-07-22
 # http://www.alikzus.se
 
 . /etc/ksh.kshrc
@@ -16,10 +16,6 @@ else
 fi
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
-
-#if [ -z ${TMUX} ]; then
-#  /usr/bin/tmux attach || /usr/bin/tmux
-#fi
 
 #--------------------------------------
 # Aliases
