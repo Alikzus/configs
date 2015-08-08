@@ -1,5 +1,5 @@
 # ~/.kshrc -- OpenBSD Korn shell configuration for interactive shells
-# joel at alikzus.se, 2015-07-22
+# joel at alikzus.se, 2015-08-08
 # http://www.alikzus.se
 
 . /etc/ksh.kshrc
@@ -21,25 +21,22 @@ fi
 # Aliases
 #--------------------------------------
 
-# Sudo and edit.
-alias sv="sudo $EDITOR"
-
-# Make a directory, with the parent flag -- DOS style.
+# Make a directory, with the parent flag -- DOS style
 alias md="mkdir -p"
 
-# Remove an empty directory -- DOS style.
+# Remove an empty directory -- DOS style
 alias rd="rmdir"
 
-# Clear the screen -- DOS style.
+# Clear the screen -- DOS style
 alias cls="clear"
 
-# Switch user but keep your environment; supposed to be safer.
+# Switch user but keep your environment; supposed to be safer
 alias su="su -m"
 
-# Edit the group file like the password file.
+# Edit the group file like the password file
 alias vigrp="vi /etc/group"
 
-# List shortcuts.
+# List shortcuts
 alias ls="ls -F"
 alias la="ls -A"
 alias ll="ls -lo"

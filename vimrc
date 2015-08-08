@@ -2,19 +2,25 @@
 "" joel at alikzus.se, 2015-07-22
 "" http://www.alikzus.se
 
-"" User for OS specific settings.
+"" Use for OS specific settings.
 let os=substitute(system('uname'), '\n', '', '')
 
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
-set fileformat=unix
-set fileformats=unix,dos
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
+
+"" File format
+set fileformat=unix
+set fileformats=unix,dos
 
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
+
+"" Timestamp configuration
+let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|TIMESTAMP'
+let timestamp_rep = '%F %T %Z'
 
 "" Show line numbers.
 set number
