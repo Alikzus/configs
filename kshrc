@@ -1,5 +1,5 @@
 # ~/.kshrc -- OpenBSD Korn shell configuration for interactive shells
-# joel at alikzus.se, 2015-08-08
+# joel at alikzus.se, 2015-08-16
 # http://www.alikzus.se
 
 . /etc/ksh.kshrc
@@ -20,6 +20,13 @@ fi
 #--------------------------------------
 # Aliases
 #--------------------------------------
+
+# Help with the transition from sudo(8) to doas(1)
+if [ ! -x /usr/bin/doas ]; then
+    alias doas="sudo"
+else
+    alias sudo="doas"
+fi
 
 # Make a directory, with the parent flag -- DOS style
 alias md="mkdir -p"
