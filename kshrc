@@ -1,11 +1,33 @@
-# ~/.kshrc -- OpenBSD Korn shell configuration for interactive shells
-# joel at alikzus.se, 2015-08-16
-# http://www.alikzus.se
+# ~/.kshrc -- configuration for OpenBSD ksh(1), public domain Korn shell
+#
+# Copyright (c) 2004-2015, Joel A. Nilsson <joel@alikzus.se>
+# 
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+# FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
 
-. /etc/ksh.kshrc
+# Source "global" config
+if [ -f /etc/ksh.kshrc ]; then
+    . /etc/ksh.kshrc
+elif [ -f $HOME/ksh.kshrc ]; then
+    . $HOME/ksh.kshrc
+fi
 
-# Turn on vi mode, it is awesome.
-set -o vi
+# vi mode if EDITOR is set to vim or vi
+if [ "$EDITOR" = "vim" ]; then
+    set -o vi
+elif [ "$EDITOR" = "vi" ]; then
+    set -o vi
+fi
 
 # A "short" but informative prompt.
 # Line breaks seems to only work with OpenBSD pdksh.
@@ -17,9 +39,9 @@ fi
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-#--------------------------------------
+#-------------------------------------------------------------------------------
 # Aliases
-#--------------------------------------
+#-------------------------------------------------------------------------------
 
 # Help with the transition from sudo(8) to doas(1)
 if [ ! -x /usr/bin/doas ]; then
@@ -52,3 +74,6 @@ alias lla="lal"
 
 # Clear the screen before an exit.
 alias exit="clear; exit"
+
+#-------------------------------------------------------------------------------
+# Last updated: 2015-08-23 13:20:41 CEST
