@@ -46,8 +46,6 @@ fi
 # Help with the transition from sudo(8) to doas(1)
 if [ ! -x /usr/bin/doas ]; then
     alias doas="sudo"
-else
-    alias sudo="doas"
 fi
 
 # Make a directory, with the parent flag -- DOS style
@@ -62,9 +60,6 @@ alias cls="clear"
 # Switch user but keep your environment; supposed to be safer
 alias su="su -m"
 
-# Edit the group file like the password file
-alias vigrp="vi /etc/group"
-
 # List shortcuts
 alias ls="ls -F"
 alias la="ls -A"
@@ -76,4 +71,16 @@ alias lla="lal"
 alias exit="clear; exit"
 
 #-------------------------------------------------------------------------------
-# Last updated: 2015-08-23 13:20:41 CEST
+# Local overrides and additions
+#-------------------------------------------------------------------------------
+
+if [ -f $HOME/.kshrc.$HOST ]; then
+    . $HOME/.kshrc.$HOST
+elif [ -f $HOME/.kshrc.local ]; then
+    . $HOME/.kshrc.local
+elif [ -f $HOME/.kshrc.user ]; then
+    . $HOME/.kshrc.user
+fi
+
+################################################################################
+# Last updated: 2015-08-24 20:26:29 CEST
