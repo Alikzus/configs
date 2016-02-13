@@ -1,6 +1,6 @@
 # ~/.profile -- profile for OpenBSD ksh(1), public domain Korn shell
 #
-# Copyright (c) 2014-2015, Joel A. Nilsson <joel@alikzus.se>
+# Copyright (c) 2014-2016, Joel A. Nilsson <joel@alikzus.se>
 #
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -16,6 +16,9 @@
 #
 
 PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
+
+# Add Cabal
+PATH=$HOME/.cabal/bin:$PATH
 
 export PATH HOME TERM
 
@@ -43,4 +46,4 @@ fi
 export ENV=$HOME/.kshrc
 
 #-------------------------------------------------------------------------------
-# Last updated: 2015-08-23 13:20:50 CEST
+# Last updated: 2016-02-13 13:17:54 CET

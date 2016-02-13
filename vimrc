@@ -1,6 +1,6 @@
 " ~/.vimrc -- configuration for vim, Vi IMproved: a programmers text editor
 "
-" Copyright (c) 2014-2015, Joel A. Nilsson <joel@alikzus.se>
+" Copyright (c) 2014-2016, Joel A. Nilsson <joel@alikzus.se>
 " 
 " Permission to use, copy, modify, and/or distribute this software for any
 " purpose with or without fee is hereby granted, provided that the above
@@ -15,8 +15,7 @@
 " PERFORMANCE OF THIS SOFTWARE.
 "
 
-" Use for OS specific settings.
-"let os=substitute(system('uname'), '\n', '', '')
+execute pathogen#infect()
 
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
@@ -60,6 +59,24 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
+" Needed by vim-airline
+set laststatus=2
+
+"-------------------------------------------------------------------------------
+" Key mappings
+map <C-n> :NERDTreeToggle<CR>   " NERDTree
+
+"-------------------------------------------------------------------------------
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 "-------------------------------------------------------------------------------
 " Correct the vim cursor in tmux
 if exists('$TMUX') 
@@ -96,4 +113,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last updated: 2015-08-23 13:26:52 CEST
+" Last updated: 2016-02-13 13:28:55 CET
