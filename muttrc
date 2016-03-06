@@ -1,6 +1,6 @@
 # ~/.mutt/muttrc -- configuration for mutt, The Mutt Mail User Agent
 #
-# Copyright (c) 2014-2015, Joel A. Nilsson <joel@alikzus.se>
+# Copyright (c) 2014-2016, Joel A. Nilsson <joel@alikzus.se>
 #
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -15,31 +15,25 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-source ~/.mutt/personal
+#-------------------------------------------------------------------------------
+# ACCOUNTS
+#-------------------------------------------------------------------------------
 
-# AutoComplete Addresses
-set query_command = "/usr/local/bin/pc_query -m '%s'"
-bind editor <Tab> complete-query
-bind editor ^T    complete
-
-# Cache
-set header_cache = "~/.mutt/cache/headers"
-set message_cachedir = "~/.mutt/cache/bodies"
-#set certificate_file = "~/.mutt/certificates"
-
-# Sidebar
-set sidebar_width=32
-set sidebar_visible=yes
-set sidebar_sort=yes
+source ~/.mutt/personal # Specific settings for a personal e-mail account
 
 #-------------------------------------------------------------------------------
 # OPTIONS
 #-------------------------------------------------------------------------------
 
-# Check for new e-mails every 60 seconds.
-set mail_check = 60
+# Cache
+#set header_cache = "~/.mutt/cache/headers"
+#set message_cachedir = "~/.mutt/cache/bodies"
 
-set imap_keepalive = 900
+# Check for new e-mails every...
+set mail_check = 60 # seconds
+
+# Stop waiting for user input after...
+set timeout = 15    # seconds
 
 # Sort mails as threads and sort threads at dates.
 set sort = threads
@@ -50,18 +44,7 @@ set editor = "vim"
 
 set pager_index_lines = 10
 
-set imap_check_subscribed = yes
-
 #set index_format = "%3C %Z %[%b %d %R] %-18.18L (%4c) %s"
-
-# Attemt to use the IMAP IDLE extension to check for new e-mails in the current mailbox.
-set imap_idle=yes
-
-# Open new connections to check for new e-mails.
-unset imap_passive
-
-# Stop waiting for user input after 15 seconds.
-set timeout = 15
 
 #set sort_browser=date
 #set pager_context = 5
@@ -71,6 +54,14 @@ set delete=yes
 #set edit_headers
 #unset mark_old
 #set pager_stop
+
+# Sidebar
+set sidebar_width=32
+set sidebar_visible=yes
+set sidebar_sort=yes
+
+# AutoComplete Addresses
+set query_command = "/usr/local/bin/pc_query -m '%s'"
 
 #-------------------------------------------------------------------------------
 # KEYBOARD BINDINGS
@@ -86,12 +77,17 @@ bind index "^" imap-fetch-mail
 #bind pager "[" half-up
 #bind pager "]" half-down
 bind attach <return> view-mailcap
-# SIDEBAR
+
+# Sidebar
 # Ctrl-n, Ctrl-p to select next, previous folder.
 # Ctrl-o to open selected folder.
 bind index,pager \CP sidebar-prev
 bind index,pager \CN sidebar-next
 bind index,pager \CO sidebar-open
+
+# Auto-complete addresses
+bind editor <Tab> complete-query
+bind editor ^T    complete
 
 #-------------------------------------------------------------------------------
 # MISC.
@@ -107,7 +103,7 @@ source "~/.mutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc"
 # macro index \cb |urlview 'call urlview to extract URLs out of a message'
 # macro pager \cb |urlview 'call urlview to extract URLs out of a message'
 
-# HTML emails
+# HTML e-mails
 set mailcap_path="~/.mailcap"
 auto_view text/html
 alternative_order text/plain text/html
@@ -117,4 +113,4 @@ alternative_order text/plain text/html
 #source $alias_file
 
 ################################################################################
-# Last updated: 2015-08-23 14:43:37 CEST
+# Last updated: 2016-03-06 09:49:25 CET
