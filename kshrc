@@ -40,15 +40,21 @@ fi
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
 # Show a fortune cookie, just for fun.
-[ -x /usr/games/fortune ] && /usr/games/fortune
+[ -x /usr/games/fortune ] \
+    && echo "-------------------------------------------------------------------------------"; \
+    echo; \
+    /usr/games/fortune; \
+    echo
 
-[ -d ~/.calendar ] && echo; /usr/bin/calendar
+[ -d ~/.calendar ] \
+    && echo "-------------------------------------------------------------------------------"; \
+    echo; \
+    /usr/bin/calendar; \
+    echo
 
 #-------------------------------------------------------------------------------
 # Aliases
 #-------------------------------------------------------------------------------
-
-[ -f $HOME/.kshrc.aliases ] && . $HOME/.kshrc.aliases
 
 # Keep a read-only copy when checking in a file with RCS
 alias ci="ci -u"
@@ -73,8 +79,6 @@ alias su="su -m"
 #-------------------------------------------------------------------------------
 # Functions
 #-------------------------------------------------------------------------------
-
-[ -f $HOME/.kshrc.functions ] && . $HOME/.kshrc.functions
 
 # (revision) control edit: Edit file and use RCS.
 # arg: file
@@ -104,13 +108,5 @@ om() {
     fi
 }
 
-#-------------------------------------------------------------------------------
-# Overrides/Additions
-#-------------------------------------------------------------------------------
-
-[ -f $HOME/.kshrc.$HOST ] && . $HOME/.kshrc.$HOST
-[ -f $HOME/.kshrc.local ] && . $HOME/.kshrc.local
-[ -f $HOME/.kshrc.user ] && . $HOME/.kshrc.user
-
 ################################################################################
-# Last updated: 2016-01-17 17:37:04 CET
+# Last updated: 2016-03-08 07:24:38 CET

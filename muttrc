@@ -15,29 +15,31 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-#-------------------------------------------------------------------------------
+################################################################################
 # ACCOUNTS
-#-------------------------------------------------------------------------------
+################################################################################
 
-source ~/.mutt/personal # Specific settings for a personal e-mail account
+source "~/.mutt/personal"   # Specific settings for a personal e-mail account
 
-#-------------------------------------------------------------------------------
+################################################################################
 # OPTIONS
-#-------------------------------------------------------------------------------
+################################################################################
 
-# Cache
-#set header_cache = "~/.mutt/cache/headers"
-#set message_cachedir = "~/.mutt/cache/bodies"
+# Color theme
+source "~/.mutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc"
 
 # Check for new e-mails every...
-set mail_check = 60 # seconds
+set mail_check = 60 # seconds. default = 15
 
 # Stop waiting for user input after...
 set timeout = 15    # seconds
 
+# Change folders quickly
+set sleep_time = 0  # seconds. default = 5
+
 # Sort mails as threads and sort threads at dates.
 set sort = threads
-set sort_aux = last-date-received
+#set sort_aux = last-date-received
 #set strict_threads = yes
 
 set editor = "vim"
@@ -55,19 +57,26 @@ set delete=yes
 #unset mark_old
 #set pager_stop
 
-# Sidebar
-set sidebar_width=32
-set sidebar_visible=yes
-set sidebar_sort=yes
-
-# AutoComplete Addresses
+# Query addresses using pyCardDAV
 set query_command = "/usr/local/bin/pc_query -m '%s'"
 
 #-------------------------------------------------------------------------------
-# KEYBOARD BINDINGS
-#-------------------------------------------------------------------------------
+# Sidebar
 
-bind index "^" imap-fetch-mail
+set sidebar_visible=yes
+set sidebar_width=24
+
+#-------------------------------------------------------------------------------
+# Cope with annoying HTML e-mails
+
+set mailcap_path="~/.mailcap"
+auto_view text/html
+alternative_order text/plain text/html
+
+################################################################################
+# KEYBOARD BINDINGS
+################################################################################
+
 #bind index \ed purge-message
 #bind pager \ed purge-message
 #bind compose p postpone-message
@@ -78,39 +87,34 @@ bind index "^" imap-fetch-mail
 #bind pager "]" half-down
 bind attach <return> view-mailcap
 
+#-------------------------------------------------------------------------------
 # Sidebar
-# Ctrl-n, Ctrl-p to select next, previous folder.
-# Ctrl-o to open selected folder.
 bind index,pager \CP sidebar-prev
 bind index,pager \CN sidebar-next
 bind index,pager \CO sidebar-open
 
+#-------------------------------------------------------------------------------
 # Auto-complete addresses
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
-#-------------------------------------------------------------------------------
-# MISC.
-#-------------------------------------------------------------------------------
+################################################################################
+# MACROS THE BLACK
+################################################################################
 
-# Mark read and delete - use "esc a"
-#macro index \ea "<enter-command>unset resolve<enter><clear-flag>N<enter-command>set resolve<enter><save-message>=Trash<enter><sync-mailbox>" "mark read and delete"
-
-# Color theme
-source "~/.mutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc"
+# mark all new messages as read (for trash folder)
+macro index A "\
+    <tag-pattern>~N|~O<enter> \
+    <tag-prefix-cond> \
+    <tag-prefix><clear-flag>N \
+    <tag-prefix><clear-flag>O \
+    <untag-pattern>~T<enter>" \ 
+    "mark all messages as read"
+    #<clear-flag>*" \
 
 # Opening links etc
 # macro index \cb |urlview 'call urlview to extract URLs out of a message'
 # macro pager \cb |urlview 'call urlview to extract URLs out of a message'
 
-# HTML e-mails
-set mailcap_path="~/.mailcap"
-auto_view text/html
-alternative_order text/plain text/html
-
-#set query_command="/usr/local/bin/muttqt -q '%s'"
-#set alias_file=~/.mutt/aliases
-#source $alias_file
-
 ################################################################################
-# Last updated: 2016-03-06 09:49:25 CET
+# Last Changed: 2016-03-09 20:31:20 CET
