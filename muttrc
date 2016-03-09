@@ -103,18 +103,11 @@ bind editor ^T    complete
 ################################################################################
 
 # mark all new messages as read (for trash folder)
-macro index A "\
-    <tag-pattern>~N|~O<enter> \
-    <tag-prefix-cond> \
-    <tag-prefix><clear-flag>N \
-    <tag-prefix><clear-flag>O \
-    <untag-pattern>~T<enter>" \ 
-    "mark all messages as read"
-    #<clear-flag>*" \
+macro index A "<tag-pattern>\~U<enter><tag-prefix-cond><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>\~T<enter>" "mark all messages as read"
 
 # Opening links etc
 # macro index \cb |urlview 'call urlview to extract URLs out of a message'
 # macro pager \cb |urlview 'call urlview to extract URLs out of a message'
 
 ################################################################################
-# Last Changed: 2016-03-09 20:31:20 CET
+# Last Changed: 2016-03-09 20:40:45 CET
