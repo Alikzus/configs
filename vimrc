@@ -113,4 +113,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last updated: 2016-02-13 13:28:55 CET
+" Last updated: 2016-03-13 18:14:20 CET
