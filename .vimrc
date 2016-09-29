@@ -51,10 +51,6 @@ set smartcase                   " ... unless they contain at least one capital l
 set laststatus=2
 
 "-------------------------------------------------------------------------------
-" Key mappings
-map <C-n> :NERDTreeToggle<CR>   " NERDTree
-
-"-------------------------------------------------------------------------------
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -101,4 +97,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last updated: 2016-09-10 17:20:28 CEST
+" Last updated: 2016-09-19 07:50:00 CEST

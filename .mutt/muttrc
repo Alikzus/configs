@@ -98,4 +98,4 @@ macro index A "<tag-pattern>\~U<enter><tag-prefix-cond><tag-prefix><clear-flag>N
 # macro pager \cb |urlview 'call urlview to extract URLs out of a message'
 
 ################################################################################
-# Last Changed: 2016-09-10 17:19:02 CEST
+# Last Changed: 2016-09-27 18:43:31 CEST
