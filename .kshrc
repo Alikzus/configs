@@ -25,8 +25,6 @@ else
     PS1='$USER@$HOST:$PWD'"$PS1S"
 fi
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
-
 # Show a fortune cookie, just for fun.
 [ -x /usr/games/fortune ] \
     && echo "-------------------------------------------------------------------------------"; \
@@ -97,4 +95,4 @@ om() {
 }
 
 ################################################################################
-# Last updated: 2016-09-10 17:18:37 CEST
+# Last updated: 2016-09-29 19:48:52 CEST

@@ -22,18 +22,15 @@ set fileencoding=utf-8
 let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|TIMESTAMP'
 let timestamp_rep = '%F %T %Z'
 
-" Show line numbers.
-set number
+set number      " Show line numbers
+set cursorline  " Highlight the cursor line
+
+set background=dark
+colorscheme solarized
 
 " Highlight column 81 and then the range above #120.
 let &colorcolumn="81,".join(range(120,999),",")
-
-" Set color for the highlight.
-"highlight ColorColumn ctermbg=235 guibg=#2c2d27
-
-" Color scheme.
-set background=dark
-colorscheme solarized
+"highlight ColorColumn ctermbg=235 guibg=#2c2d27 # Set the highlight color
 
 " Whitespace
 set nowrap                      " don't wrap lines
@@ -97,4 +94,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last updated: 2016-09-19 07:50:00 CEST
+" Last updated: 2016-09-29 19:59:20 CEST
