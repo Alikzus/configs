@@ -17,7 +17,11 @@ source "~/.mutt/personal"   # Specific settings for a personal e-mail account
 source "~/.mutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc"
 
 # Check for new e-mails every...
-set mail_check = 60 # seconds. default = 15
+#set mail_check = 60 # seconds. default = 15
+
+# Enable extended buffy mode to calculate total, new, and flagged
+# message counts for each mailbox.
+set mail_check_stats
 
 # Stop waiting for user input after...
 set timeout = 15    # seconds
@@ -51,8 +55,16 @@ set query_command = "/usr/local/bin/pc_query -m '%s'"
 #-------------------------------------------------------------------------------
 # Sidebar
 
-set sidebar_visible=yes
-set sidebar_width=24
+set sidebar_visible
+
+#set sidebar_short_path = yes
+
+set sidebar_delim_chars = '/'
+
+# Display the Sidebar mailboxes using this format string.
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+
+set sidebar_width = 24
 
 #-------------------------------------------------------------------------------
 # Cope with annoying HTML e-mails
@@ -77,12 +89,28 @@ bind attach <return> view-mailcap
 
 #-------------------------------------------------------------------------------
 # Sidebar
-bind index,pager \CP sidebar-prev
-bind index,pager \CN sidebar-next
-bind index,pager \CO sidebar-open
+
+# Move the highlight to the previous mailbox
+bind index,pager \Cp sidebar-prev
+
+# Move the highlight to the next mailbox
+bind index,pager \Cn sidebar-next
+
+# Open the highlighted mailbox
+bind index,pager \Cl sidebar-open
+
+# Move the highlight to the previous mailbox containing new, or flagged, mail.
+bind index,pager <F5> sidebar-prev-new
+
+# Move the highlight to the next mailbox containing new, or flagged, mail.
+bind index,pager <F6> sidebar-next-new
+
+# Toggle the visibility of the Sidebar.
+bind index,pager B sidebar-toggle-visible
 
 #-------------------------------------------------------------------------------
 # Auto-complete addresses
+
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
@@ -91,11 +119,11 @@ bind editor ^T    complete
 ################################################################################
 
 # mark all new messages as read (for trash folder)
-macro index A "<tag-pattern>\~U<enter><tag-prefix-cond><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>\~T<enter>" "mark all messages as read"
+#macro index A "<tag-pattern>\~U<enter><tag-prefix-cond><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>\~T<enter>" "mark all messages as read"
 
 # Opening links etc
 # macro index \cb |urlview 'call urlview to extract URLs out of a message'
 # macro pager \cb |urlview 'call urlview to extract URLs out of a message'
 
 ################################################################################
-# Last Changed: 2016-09-29 20:23:18 CEST
+# Last Changed: 2017-01-04 07:37:00 CET

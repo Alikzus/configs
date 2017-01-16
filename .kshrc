@@ -1,6 +1,6 @@
 # ~/.kshrc -- configuration for OpenBSD ksh(1), public domain Korn shell
 #
-# Author: Joel A. Nilsson <joel@alikzus.se>, 2014-2016
+# Author: Joel A. Nilsson <joel@alikzus.se>, 2014-2017
 #
 
 # Source a general config
@@ -74,25 +74,5 @@ ce() {
     /usr/bin/ci -u $1
 }
 
-# doas (revision) control edit: Edit file with doas and use RCS.
-# arg: file
-dce() {
-    /usr/bin/doas /usr/bin/co -l $1
-    /usr/bin/doas ${EDITOR} $1
-    /usr/bin/doas /usr/bin/ci -u $1
-}
-
-# offsite messages: tail the messages log via ssh
-# arg: host filter
-om() {
-    clear
-
-    if [ -z $2 ]; then
-        /usr/bin/ssh -t $1 'tail -f /var/log/messages'
-    else
-        /usr/bin/ssh -t $1 "tail -f /var/log/messages | grep -v $2"
-    fi
-}
-
 ################################################################################
-# Last updated: 2016-09-29 19:48:52 CEST
+# Last updated: 2017-01-16 18:13:10 CET
