@@ -1,13 +1,18 @@
+#!/bin/ksh
 # ~/.kshrc -- configuration for OpenBSD ksh(1), public domain Korn shell
 #
-# Author: Joel A. Nilsson <joel@alikzus.se>, 2014-2017
+# Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
 #
 
-# Source a general config
+# Source a general config:
+# /etc/ksh.kshrc is the OpenBSD default.
+# Use the alternative on other systems.
+# shellcheck disable=SC1091
+# shellcheck disable=SC1090
 if [ -f /etc/ksh.kshrc ]; then
-    . /etc/ksh.kshrc    # OpenBSD default
-elif [ -f $HOME/ksh.kshrc ]; then
-    . $HOME/ksh.kshrc
+    . /etc/ksh.kshrc
+elif [ -f "$HOME/ksh.kshrc" ]; then
+    . "$HOME/ksh.kshrc"
 fi
 
 # vi mode if EDITOR is set to vim or vi
@@ -18,15 +23,10 @@ elif [ "$EDITOR" = "vi" ]; then
 fi
 
 # A short and informative prompt
-# Line breaks seems to only work with OpenBSD pdksh.
-if [[ "$(uname)" = "OpenBSD" ]]; then
-    PS1='\n$USER@$HOST:$PWD\n'"$PS1S"
-else
-    PS1='$USER@$HOST:$PWD'"$PS1S"
-fi
+PS1='\n$USER@$HOST:$PWD\n'"$PS1S"
 
 # Just for fun...
-if [ -z $TERM ]; then
+if [ -z "$TERM" ]; then
     [ -x /usr/games/fortune ] \
         && echo "-------------------------------------------------------------------------------"; \
         echo; \
@@ -70,10 +70,10 @@ alias su="su -m"
 # (revision) control edit: Edit file and use RCS.
 # arg: file
 ce() {
-    /usr/bin/co -l $1
-    ${EDITOR} $1
-    /usr/bin/ci -u $1
+    /usr/bin/co -l "$1"
+    ${EDITOR} "$1"
+    /usr/bin/ci -u "$1"
 }
 
 ################################################################################
-# Last updated: 2017-01-16 18:21:15 CET
+# Last updated: 2018-01-16 15:52:33 CET
