@@ -1,0 +1,103 @@
+" ~/.vimrc -- configuration for vim, Vi IMproved: a programmers text editor
+"
+" Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
+"
+
+execute pathogen#infect()
+
+set nocompatible                " choose no compatibility with legacy vi
+syntax enable
+set showcmd                     " display incomplete commands
+filetype plugin indent on       " load file type plugins + indentation
+
+"" File format
+set fileformat=unix
+set fileformats=unix,dos
+
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
+"" Timestamp configuration
+let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|TIMESTAMP'
+let timestamp_rep = '%F %T %Z'
+
+set number      " Show line numbers
+set cursorline  " Highlight the cursor line
+
+"set t_Co=256
+set background=dark
+colorscheme solarized
+
+"" Highlight column 81 and then the range above #120.
+let &colorcolumn="81,".join(range(120,999),",")
+"highlight ColorColumn ctermbg=235 guibg=#2c2d27 # Set the highlight color
+
+"" Whitespace
+"set nowrap                      " don't wrap lines
+"set backspace=indent,eol,start  " backspace through everything in insert mode
+set textwidth=79  " lines longer than 79 columns will be broken
+set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
+set tabstop=4     " a hard TAB displays as 4 columns
+set expandtab     " insert spaces when hitting TABs
+set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set shiftround    " round indent to multiple of 'shiftwidth'
+set autoindent    " align the new line indent with the previous line
+
+"" Searching
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
+
+"" Needed by vim-airline
+set laststatus=2
+
+"-------------------------------------------------------------------------------
+"" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"-------------------------------------------------------------------------------
+"" Correct the vim cursor in tmux
+if exists('$TMUX') 
+    let &t_SI = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[0 q"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+"-------------------------------------------------------------------------------
+" for tmux to automatically set paste and nopaste mode at the time pasting (as
+" happens in VIM UI)
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+"-------------------------------------------------------------------------------
+" Last changed: 2018-03-23 09:40:39 CET

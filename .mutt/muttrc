@@ -1,20 +1,25 @@
 # ~/.mutt/muttrc -- configuration for mutt, The Mutt Mail User Agent
 #
-# Author: Joel A. Nilsson <joel@alikzus.se>, 2014-2017
+# Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
 #
 
 ################################################################################
 # ACCOUNTS
 ################################################################################
 
-source "~/.mutt/personal"   # Specific settings for a personal e-mail account
+source "~/.neomutt/personal"   # Specific settings for a personal e-mail account
 
 ################################################################################
 # OPTIONS
 ################################################################################
 
 # Color theme
-source "~/.mutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc"
+source "~/.neomutt/colors/solarized/mutt-colors-solarized-dark-16.muttrc"
+
+ignore *
+unignore from date subject to cc bcc
+unignore organization organisation x-mailer: x-newsreader: x-mailing-list:
+unignore posted-to:
 
 # Check for new e-mails every...
 #set mail_check = 60 # seconds. default = 15
@@ -123,4 +128,4 @@ bind editor ^T    complete
 # macro pager \cb |urlview 'call urlview to extract URLs out of a message'
 
 ################################################################################
-# Last Changed: 2017-08-15 13:44:15 CEST
+# Last Changed: 2018-03-21 13:29:05 CET
