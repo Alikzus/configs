@@ -3,12 +3,30 @@
 " Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
 "
 
-execute pathogen#infect()
+let g:timestamp_modelines="15"	" must be set before the module is loaded
 
-set nocompatible                " choose no compatibility with legacy vi
+"-------------------------------------------------------------------------------
+"" Plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-scripts/timestamp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-surround'
+call plug#end()
+
+"-------------------------------------------------------------------------------
+"" Miscellaneous
+set nocompatible              " be iMproved
+filetype plugin indent on
 syntax enable
-set showcmd                     " display incomplete commands
-filetype plugin indent on       " load file type plugins + indentation
 
 "" File format
 set fileformat=unix
@@ -18,9 +36,7 @@ set fileformats=unix,dos
 set encoding=utf-8
 set fileencoding=utf-8
 
-"" Timestamp configuration
-let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|TIMESTAMP'
-let timestamp_rep = '%F %T %Z'
+set showcmd                     " display incomplete commands
 
 set number      " Show line numbers
 set cursorline  " Highlight the cursor line
@@ -34,9 +50,7 @@ let &colorcolumn="81,".join(range(120,999),",")
 "highlight ColorColumn ctermbg=235 guibg=#2c2d27 # Set the highlight color
 
 "" Whitespace
-"set nowrap                      " don't wrap lines
-"set backspace=indent,eol,start  " backspace through everything in insert mode
-set textwidth=79  " lines longer than 79 columns will be broken
+"set textwidth=79  " lines longer than 79 columns will be broken
 set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
 set tabstop=4     " a hard TAB displays as 4 columns
 set expandtab     " insert spaces when hitting TABs
@@ -50,8 +64,15 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
-"" Needed by vim-airline
+"-------------------------------------------------------------------------------
+"" Timestamp
+let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|TIMESTAMP'
+let timestamp_rep = '%F %T %Z'
+
+"-------------------------------------------------------------------------------
+"" Airline
 set laststatus=2
+let g:airline_solarized_bg='dark'
 
 "-------------------------------------------------------------------------------
 "" Syntastic
@@ -63,6 +84,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['flake8']
 
 "-------------------------------------------------------------------------------
 "" Correct the vim cursor in tmux
@@ -100,4 +123,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last changed: 2018-04-10 07:06:10 CEST
+" Last changed: 2018-04-10 08:47:41 CEST
