@@ -1,4 +1,4 @@
-" ~/.vimrc -- configuration for vim, Vi IMproved: a programmers text editor
+" ~/.vim/vimrc -- configuration for vim, Vi IMproved: a programmers text editor
 "
 " Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
 "
@@ -100,4 +100,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last changed: 2018-03-23 09:40:39 CET
+" Last changed: 2018-04-10 07:06:10 CEST
