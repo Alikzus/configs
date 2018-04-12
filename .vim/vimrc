@@ -18,7 +18,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'vim-scripts/timestamp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'jwhitley/vim-colors-solarized'
 Plug 'tpope/vim-surround'
 call plug#end()
 
@@ -123,4 +123,4 @@ endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 "-------------------------------------------------------------------------------
-" Last changed: 2018-04-10 08:47:41 CEST
+" Last changed: 2018-04-12 11:00:07 CEST
