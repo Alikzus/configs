@@ -1,1 +1,1 @@
-spectrwm
+cwm
