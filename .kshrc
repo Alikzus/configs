@@ -16,7 +16,9 @@ elif [ -f "$HOME/ksh.kshrc" ]; then
 fi
 
 # vi mode if EDITOR is set to vim or vi
-if [ "$EDITOR" = "vim" ]; then
+if [ "$EDITOR" = "nvim" ]; then
+    set -o vi
+elif [ "$EDITOR" = "vim" ]; then
     set -o vi
 elif [ "$EDITOR" = "vi" ]; then
     set -o vi
@@ -78,4 +80,4 @@ ce() {
 }
 
 ################################################################################
-# Last updated: 2018-03-13 08:51:52 CET
+# Last updated: 2018-08-14 20:38:44 CEST

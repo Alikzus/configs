@@ -1,53 +1,39 @@
-" ~/.vim/vimrc -- configuration for vim, Vi IMproved: a programmers text editor
-"
+" Neovim Configuration File
 " Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
+" Last changed: 2018-08-14 21:09:49 CEST
 "
 
 let g:timestamp_modelines="15"	" must be set before the module is loaded
 
-"-------------------------------------------------------------------------------
+""------------------------------------------------------------------------------
 "" Plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
+  silent !curl -fLo $XDG_CONFIG_HOME/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
-Plug 'vim-syntastic/syntastic'
+call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugin' }
+Plug 'neomake/neomake'
+Plug 'ervandew/supertab'
 Plug 'vim-scripts/timestamp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jwhitley/vim-colors-solarized'
-Plug 'tpope/vim-surround'
 call plug#end()
 
-"-------------------------------------------------------------------------------
-"" Miscellaneous
-set nocompatible              " be iMproved
-filetype plugin indent on
-syntax enable
-
-"" File format
-set fileformat=unix
-set fileformats=unix,dos
-
-"" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-
-set showcmd                     " display incomplete commands
+""------------------------------------------------------------------------------
 
 set number      " Show line numbers
 set cursorline  " Highlight the cursor line
 
-"set t_Co=256
 set background=dark
 colorscheme solarized
 
 "" Highlight column 81 and then the range above #120.
 let &colorcolumn="81,".join(range(120,999),",")
-"highlight ColorColumn ctermbg=235 guibg=#2c2d27 # Set the highlight color
 
 "" Whitespace
 "set textwidth=79  " lines longer than 79 columns will be broken
@@ -56,71 +42,16 @@ set tabstop=4     " a hard TAB displays as 4 columns
 set expandtab     " insert spaces when hitting TABs
 set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set shiftround    " round indent to multiple of 'shiftwidth'
-set autoindent    " align the new line indent with the previous line
 
 "" Searching
-set hlsearch                    " highlight matches
-set incsearch                   " incremental searching
-set ignorecase                  " searches are case insensitive...
-set smartcase                   " ... unless they contain at least one capital letter
+"""set ignorecase                  " searches are case insensitive...
+"""set smartcase                   " ... unless they contain at least one capital letter
 
-"-------------------------------------------------------------------------------
+""------------------------------------------------------------------------------
 "" Timestamp
-let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|TIMESTAMP'
+let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|2018-08-14 21:07:04 CEST'
 let timestamp_rep = '%F %T %Z'
 
-"-------------------------------------------------------------------------------
+""------------------------------------------------------------------------------
 "" Airline
-set laststatus=2
 let g:airline_solarized_bg='dark'
-
-"-------------------------------------------------------------------------------
-"" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['flake8']
-
-"-------------------------------------------------------------------------------
-"" Correct the vim cursor in tmux
-if exists('$TMUX') 
-    let &t_SI = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[0 q"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-"-------------------------------------------------------------------------------
-" for tmux to automatically set paste and nopaste mode at the time pasting (as
-" happens in VIM UI)
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
-
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
-
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
-
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-"-------------------------------------------------------------------------------
-" Last changed: 2018-04-12 11:00:07 CEST

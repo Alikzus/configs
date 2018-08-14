@@ -9,7 +9,9 @@ PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/
 
 export PATH HOME TERM
 
-if [ -x /usr/local/bin/vim ]; then
+if [ -x /usr/local/bin/nvim ]; then
+    export EDITOR=nvim
+elif [ -x /usr/local/bin/vim ]; then
     export EDITOR=vim
 else
     export EDITOR=vi
@@ -17,13 +19,13 @@ fi
 
 export PAGER=less
 
+export PRINTER=rp
+
 export LC_CTYPE=sv_SE.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 
-# The Haskell Cabal
-if [ -d "$HOME/.cabal" ]; then
-    PATH="$PATH:$HOME/.cabal/bin"
-fi
+export XDG_CONFIG_HOME=$HOME/etc
+export XDG_DATA_HOME=$HOME/share
 
 # Go (golang)
 if [ -d "$HOME/go" ]; then
@@ -35,4 +37,4 @@ fi
 export ENV=$HOME/.kshrc
 
 #-------------------------------------------------------------------------------
-# Last updated: 2018-06-22 15:15:44 CEST
+# Last updated: 2018-08-14 19:48:35 CEST
