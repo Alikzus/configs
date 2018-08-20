@@ -1,3 +1,5 @@
+gap 19 0 0 0
+
 sticky yes
 
 command lock "xlock -description +echokeys -mode matrix"
@@ -5,6 +7,9 @@ command lock "xlock -description +echokeys -mode matrix"
 autogroup 1 "xterm,XTerm"
 autogroup 2 "Navigator,Firefox"
 
+ignore conky
+ignore dzen2
+ignore lemonbar
 ignore xclock
 
 bind-key 4-h window-htile

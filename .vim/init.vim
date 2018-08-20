@@ -1,6 +1,6 @@
 " Neovim Configuration File
 " Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
-" Last changed: 2018-08-14 21:09:49 CEST
+" Last changed: 2018-08-19 14:59:32 CEST
 "
 
 let g:timestamp_modelines="15"	" must be set before the module is loaded
@@ -49,9 +49,13 @@ set shiftround    " round indent to multiple of 'shiftwidth'
 
 ""------------------------------------------------------------------------------
 "" Timestamp
-let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|2018-08-14 21:07:04 CEST'
+let timestamp_regexp = '\v\C%(<Last %([Cc]hanged?|[Mm]odified|[Uu]pdated)\s*:\s+)@<=\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2} \a+|2018-08-19 14:59:32 CEST'
 let timestamp_rep = '%F %T %Z'
 
 ""------------------------------------------------------------------------------
 "" Airline
 let g:airline_solarized_bg='dark'
+
+""------------------------------------------------------------------------------
+"" Neomake
+call neomake#configure#automake('nrwi', 500)
