@@ -1,13 +1,14 @@
 #!/bin/sh
 
+# shellcheck source=/dev/null
+. "$HOME/.profile" || exit 1
+
 fonts=$(find /usr/local/share/fonts/* -type d)
 for font in $fonts ; do
     xset +fp "$font"
 done
 
-if [ -f "$HOME/.Xresources" ]; then
-    xrdb -load "$HOME/.Xresources"
-fi
+xrdb -load "$HOME/.Xresources" || exit 1
 
 ~/configs/lemonbar.sh &
 

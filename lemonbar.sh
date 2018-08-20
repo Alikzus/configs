@@ -2,7 +2,7 @@
 
 # Author: Joel A. Hänel <joel@hanel.nu>, 2018
 # Credits: GuinansEyebrows
-# Last changed: 2018-08-19 21:20:35 CEST
+# Last changed: 2018-08-20 12:26:07 CEST
  
 clock() {
     date +'%F %H:%M'
@@ -11,7 +11,7 @@ clock() {
 mpd() {
     if mpc status | awk 'NR==2' | grep -Eq 'playing|paused'
     then
-            mpc current | cut -c 1-48
+        mpc current | cut -c 1-48
     fi
    
 }
