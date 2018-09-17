@@ -2,6 +2,7 @@
 # ~/.kshrc -- configuration for OpenBSD ksh(1), public domain Korn shell
 #
 # Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
+# Last updated: 2018-09-04 21:12:59 CEST
 #
 
 # Source a general config:
@@ -27,20 +28,6 @@ fi
 # A short and informative prompt
 PS1='\n$USER@$HOST:$PWD\n'"$PS1S"
 
-# Just for fun...
-if [ -z "$TERM" ]; then
-    [ -x /usr/games/fortune ] \
-        && echo "-------------------------------------------------------------------------------"; \
-        echo; \
-        /usr/games/fortune; \
-        echo
-    [ -d ~/.calendar ] \
-        && echo "-------------------------------------------------------------------------------"; \
-        echo; \
-        /usr/bin/calendar; \
-        echo
-fi
-
 #-------------------------------------------------------------------------------
 # Aliases
 #-------------------------------------------------------------------------------
@@ -64,20 +51,3 @@ alias lla="lal"
 # Keep environment when switching user.
 # Supposed to be safer. True or not? Verify!
 alias su="su -m"
-
-#alias tmux="tmux -2"
-
-#-------------------------------------------------------------------------------
-# Functions
-#-------------------------------------------------------------------------------
-
-# (revision) control edit: Edit file and use RCS.
-# arg: file
-ce() {
-    /usr/bin/co -l "$1"
-    ${EDITOR} "$1"
-    /usr/bin/ci -u "$1"
-}
-
-################################################################################
-# Last updated: 2018-08-19 16:56:54 CEST

@@ -12,6 +12,5 @@ ignore dzen2
 ignore lemonbar
 ignore xclock
 
-bind-key 4-h window-htile
 bind-key 4-v window-vtile
 

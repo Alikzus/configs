@@ -3,14 +3,14 @@
 # ~/.profile -- profile for OpenBSD ksh(1), public domain Korn shell
 #
 # Author: Joel A. Hänel <joel@hanel.nu>, 2014-2018
-# Last updated: 2018-08-20 11:10:20 CEST
+# Last updated: 2018-09-04 21:14:00 CEST
 #
 
 PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
 
 EDITOR="vi"
-[ -x /usr/local/bin/nvim ] && EDITOR="nvim"
 [ -x /usr/local/bin/vim ]  && EDITOR="vim"
+[ -x /usr/local/bin/nvim ] && EDITOR="nvim"
 
 PAGER="less"
 
